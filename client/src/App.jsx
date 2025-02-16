@@ -17,8 +17,9 @@ const App = () => {
   }, []);
 
   async function reviewCode() {
-    const response = await axios.post('http://localhost:3000/ai/get-review', { code });
-  
+    // const response = await axios.post('http://localhost:3000/ai/get-review', { code });
+    const response = await axios.post('https://codeiq-server.onrender.com/ai/get-review', { code });
+
     const reviewText = response.data;
     setReview(""); // Clear previous review
   
