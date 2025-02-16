@@ -49,7 +49,11 @@ CodeIQ is an **AI-powered code review tool** built with **React.js, Node.js, and
 
 ## 📸 Screenshots  
 
-*(Add screenshots of your app interface here to showcase its functionality.)*  
+![image](https://github.com/user-attachments/assets/d4de7d24-5814-4518-ba9f-1c6c6bb4b951)
+![image](https://github.com/user-attachments/assets/94a48b90-d527-4061-b3e0-0d9f264d7bdf)
+![image](https://github.com/user-attachments/assets/a2e7ef4a-f0f7-4257-9555-f24111702b8d)
+
+
 
 ## 🤝 Contributing  
 
