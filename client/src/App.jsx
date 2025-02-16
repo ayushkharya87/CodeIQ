@@ -17,17 +17,30 @@ const App = () => {
   }, []);
 
   async function reviewCode() {
-    const response = await axios.post('http://localhost:3000/ai/get-review', { code })
-    // console.log(response.data);
-    setReview(response.data);
+    const response = await axios.post('http://localhost:3000/ai/get-review', { code });
+  
+    const reviewText = response.data;
+    setReview(""); // Clear previous review
+  
+    let i = 0;
+    function typeEffect() {
+      if (i < reviewText.length) {
+        setReview((prev) => prev + reviewText.charAt(i));
+        i++;
+        setTimeout(typeEffect, 1); // Adjust speed (20ms per character)
+      }
+    }
+    
+    typeEffect();
   }
+  
 
   return (
     <>
       <main>
         <div className="left">
           <div className="code">
-            <Editor
+            <Editor placeholder="Write your code here..."
               value={code}
               onValueChange={(code) => setCode(code)}
               highlight={(code) =>
@@ -44,9 +57,10 @@ const App = () => {
           <div className="review" onClick={reviewCode}>Review</div>
         </div>
         <div className="right">
-          <MarkDown rehypePlugins={[rehypeHighlight]}>
-          {review}
-          </MarkDown>
+        <div className={`right ${review ? "typing" : ""}`}>
+  <MarkDown rehypePlugins={[rehypeHighlight]}>{review}</MarkDown>
+</div>
+
         </div>
       </main>
     </>

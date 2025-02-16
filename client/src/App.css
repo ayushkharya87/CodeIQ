@@ -9,16 +9,22 @@ body,
 #root {
   height: 100%;
   width: 100%;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: "Fira Code", "Fira Mono", monospace;
 }
 
+/* Fade-in Animation */
 main {
   height: 100%;
   width: 100%;
   padding: 1.5rem;
   display: flex;
   gap: 1rem;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* Left & Right Panels */
 main .left,
 main .right {
   height: 100%;
@@ -26,11 +32,16 @@ main .right {
   border-radius: 0.7rem;
 }
 
+/* Left Panel */
 main .left {
-  background-color: #000000;
+  background-color: #1e1e1e;
   position: relative;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  overflow: auto;
+  height: 100%;
 }
 
+/* Code Editor */
 .left .code,
 .code pre,
 .code pre code {
@@ -38,27 +49,74 @@ main .left {
   width: 100%;
   margin: 0;
   border-radius: 0.7rem;
-  background-color: #0c0c0c;
+  background-color: #252526;
 }
 
+/* Review Button */
 main .left .review {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: rgb(219, 219, 255);
-  color: #000000;
+  position: fixed;
+  bottom: 2.7rem;
+  left: 38%;
+  background-color: #282828;
+  color: #ffffff;
   padding: 0.5rem 2rem;
   font-weight: 500;
   cursor: pointer;
   user-select: none;
   border-radius: 0.7rem;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
 }
 
-
+/* Right Panel */
 main .right {
-  background-color: #343434;
+  background-color: #181818;
   padding: 1rem 2rem;
   font-size: 1rem;
   overflow: auto;
-  color: rgb(250, 246, 237);
+  color: rgb(230, 230, 230);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
+
+/* Scrollbar Styling */
+main .right::-webkit-scrollbar, main .left::-webkit-scrollbar {
+  width: 8px;
+}
+
+main .right::-webkit-scrollbar-track, main .left::-webkit-scrollbar-track {
+  background: #252525;
+}
+
+main .right::-webkit-scrollbar-thumb, main .left::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.right::after {
+  /* content: "|"; */
+  font-weight: bold;
+  animation: blink 0.7s infinite;
+}
+
+.right.typing::after {
+  display: inline;
+}
+
